@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
             --soft-brown: #d4c4b0;
             --muted-brown: #a89080;
             --deep-brown: #8b7d6b;
-            --text-primary: #6b5d52;
+            --text-primary: #584b41;
             --text-secondary: #9b8d82;
             --accent-cream: #f9f7f4;
             --border-light: #ede8e3;
@@ -71,6 +72,12 @@
             font-weight: 500;
             color: var(--deep-brown);
             letter-spacing: -0.01em;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--muted-brown);
         }
 
         .nav-links {
@@ -106,6 +113,9 @@
             transition: 0.3s;
         }
 
+
+        
+
         /* Sections */
         section {
             padding: 120px 0;
@@ -118,12 +128,17 @@
             width: 100%;
         }
 
+        
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, var(--warm-white) 0%, var(--primary-beige) 100%);
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding: 120px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 /* Video Rectangle Elements */
@@ -131,9 +146,10 @@
     position: absolute;
     border-radius: 24px;
     background: linear-gradient(135deg, var(--soft-brown), var(--muted-brown));
-    opacity: 0.8; /* Increased opacity to make videos more visible */
+    opacity: 0.4; /* Reduced opacity */
     z-index: 1;
     overflow: hidden;
+    box-shadow: 0 20px 60px rgba(107, 93, 82, 0.1);
 }
 
 .video-rect-1 {
@@ -142,7 +158,7 @@
     top: -50px;
     left: 10%;
     transform: rotate(-15deg);
-    box-shadow: 0 20px 60px rgba(107, 93, 82, 0.15);
+    animation: float-slow 8s ease-in-out infinite;
 }
 
 .video-rect-2 {
@@ -151,7 +167,7 @@
     bottom: -80px;
     right: 12%;
     transform: rotate(12deg);
-    box-shadow: 0 20px 60px rgba(107, 93, 82, 0.15);
+    animation: float-medium 7s ease-in-out infinite;
 }
 
 .video-rect-3 {
@@ -160,7 +176,7 @@
     top: 30%;
     right: 5%;
     transform: rotate(-8deg);
-    box-shadow: 0 20px 60px rgba(107, 93, 82, 0.15);
+    animation: float-fast 6s ease-in-out infinite;
 }
 
 /* Video styling */
@@ -171,10 +187,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.8; /* Adjust opacity as needed */
+    opacity: 0.5; /* Reduced video opacity */
 }
 
-/* Add video placeholder content inside rectangles */
+/* Video placeholder content */
 .video-rect-1::before, .video-rect-2::before, .video-rect-3::before {
     content: '';
     position: absolute;
@@ -182,18 +198,19 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,30 L70,50 L50,70 L30,50 Z" fill="%23ffffff" opacity="0.2"/></svg>') center no-repeat;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,30 L70,50 L50,70 L30,50 Z" fill="%23ffffff" opacity="0.15"/></svg>') center no-repeat;
     background-size: 40%;
-    z-index: 2; /* Ensure the play button is above the video */
+    z-index: 2;
 }
 
 /* Ensure content is above the rectangles */
 .hero .section-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
+    width: 100%;
 }
 
-/* Add subtle animation to the rectangles */
+/* Animation keyframes */
 @keyframes float-slow {
     0%, 100% { transform: translateY(0) rotate(-15deg); }
     50% { transform: translateY(-15px) rotate(-12deg); }
@@ -209,143 +226,376 @@
     50% { transform: translateY(-10px) rotate(-5deg); }
 }
 
-.video-rect-1 {
-    animation: float-slow 8s ease-in-out infinite;
+/* Hero Typography with Lift Effects */
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    margin-top: 40px;
+    margin-bottom: 24px;
+    color: var(--text-primary); /* Changed to use CSS variable */
+    font-weight: 300;
+    line-height: 1.1;
+    text-shadow: 0 4px 8px rgba(107, 93, 82, 0.1), 0 2px 4px rgba(107, 93, 82, 0.08);
+    transform: translateY(0);
+    transition: all 0.3s ease;
 }
 
-.video-rect-2 {
-    animation: float-medium 7s ease-in-out infinite;
+.hero h1:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 6px 12px rgba(107, 93, 82, 0.15), 0 3px 6px rgba(107, 93, 82, 0.1);
 }
 
-.video-rect-3 {
-    animation: float-fast 6s ease-in-out infinite;
+.hero .subtitle {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: 32px;
+    color: var(--text-primary); /* Changed to use CSS variable */
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 4px rgba(107, 93, 82, 0.08);
+    transform: translateY(0);
+    transition: all 0.3s ease;
 }
 
-/* Responsive adjustments for the video rectangles */
-@media (max-width: 768px) {
-    .video-rect-1 {
-        width: 200px;
-        height: 360px;
-        left: -30px;
+.hero .subtitle:hover {
+    transform: translateY(-1px);
+    text-shadow: 0 4px 8px rgba(107, 93, 82, 0.12);
+}
+
+.hero .bio {
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    max-width: min(580px, 90%);
+    margin: 0 auto 48px;
+    line-height: 1.8;
+    color: var(--text-primary); /* Changed to use CSS variable */
+    text-shadow: 0 1px 3px rgba(107, 93, 82, 0.06);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    padding: 0 20px;
+}
+
+.hero .bio:hover {
+    transform: translateY(-1px);
+    text-shadow: 0 2px 6px rgba(107, 93, 82, 0.1);
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 16px 32px;
+    background-color: var(--deep-brown);
+    color: var(--warm-white);
+    text-decoration: none;
+    border-radius: 32px;
+    transition: all 0.3s ease;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    margin-top: 20px;
+}
+
+.cta-button:hover {
+    background-color: var(--muted-brown);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 93, 82, 0.2);
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+    .hero {
+        padding: 100px 0;
+        min-height: 100vh;
     }
-
+    
+    .video-rect-1 {
+        width: 220px;
+        height: 390px;
+        left: 5%;
+        opacity: 0.35;
+    }
+    
     .video-rect-2 {
-        width: 180px;
-        height: 320px;
-        right: -40px;
+        width: 200px;
+        height: 350px;
+        right: 8%;
+        opacity: 0.35;
     }
-
+    
     .video-rect-3 {
-        width: 140px;
-        height: 250px;
-        top: 40%;
-        right: 15%;
-    }
-}
-
-@media (max-width: 480px) {
-    .video-rect-1 {
         width: 150px;
         height: 270px;
-        left: -50px;
+        right: 3%;
+        opacity: 0.3;
+    }
+}
+
+/* Mobile Responsive - Full Screen */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 0;
+        min-height: 100vh; /* Full screen height */
+        min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    }
+    
+    .hero h1 {
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .hero .subtitle {
+        margin-bottom: 24px;
+    }
+    
+    .hero .bio {
+        margin-bottom: 32px;
+    }
+    
+    .video-rect-1 {
+        width: 160px;
+        height: 280px;
+        left: -20px;
+        top: 10%;
+        opacity: 0.3;
+        z-index: 1;
     }
 
     .video-rect-2 {
-        width: 130px;
-        height: 230px;
-        right: -60px;
+        width: 140px;
+        height: 250px;
+        right: -30px;
+        bottom: -40px;
+        opacity: 0.3;
     }
 
     .video-rect-3 {
-        display: none; /* Hide the third rectangle on very small screens */
+        width: 120px;
+        height: 210px;
+        top: 50%;
+        right: 10px;
+        transform: rotate(-5deg);
+        opacity: 0.25;
     }
 }
-        
-        /* Hero Section - Keep existing styles */
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 24px;
-            color: var(--deep-brown);
-            font-weight: 300;
-            line-height: 1.1;
-        }
 
-        .hero .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 32px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 0.02em;
-        }
+/* Small Mobile - Full Screen */
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 0;
+        min-height: 100vh; /* Full screen height */
+        min-height: 100dvh; /* Dynamic viewport height */
+    }
+    
+    .hero h1 {
+        margin-top: 25px;
+        margin-bottom: 16px;
+    }
+    
+    .hero .subtitle {
+        margin-bottom: 20px;
+    }
+    
+    .hero .bio {
+        margin-bottom: 28px;
+    }
+    
+    .video-rect-1 {
+        width: 140px;
+        height: 250px;
+        left: -10px;
+        top: 15%;
+        opacity: .6;
+        z-index: 1;
+    }
 
-        .hero .bio {
-            font-size: 1.1rem;
-            max-width: 580px;
-            margin: 0 auto 48px;
-            line-height: 1.8;
-            color: var(--text-primary);
-        }
+    .video-rect-2 {
+        width: 120px;
+        height: 210px;
+        right: -20px;
+        bottom: -20px;
+        opacity: 0.6;
+    }
 
-        .cta-button {
-            display: inline-block;
-            padding: 16px 32px;
-            background-color: var(--deep-brown);
-            color: var(--warm-white);
-            text-decoration: none;
-            border-radius: 32px;
-            transition: all 0.3s ease;
-            font-weight: 400;
-            font-size: 15px;
-            letter-spacing: 0.01em;
-        }
+    .video-rect-3 {
+        width: 100px;
+        height: 180px;
+        top: 60%;
+        right: 5px;
+        transform: rotate(-3deg);
+        opacity: 0.2;
+    }
+}
 
-        .cta-button:hover {
-            background-color: var(--muted-brown);
-            transform: translateY(-1px);
-        }
-        /* About Section */
-        .about {
-            background-color: var(--warm-white);
-        }
+/* Extra Small Mobile - Full Screen */
+@media (max-width: 360px) {
+    .hero {
+        padding: 30px 0;
+        min-height: 100vh; /* Full screen height */
+        min-height: 100dvh; /* Dynamic viewport height */
+    }
+    
+    .video-rect-1 {
+        width: 120px;
+        height: 210px;
+        left: 5px;
+        top: 20%;
+        opacity: 0.8;
+        transform: rotate(-10deg);
+    }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
+    .video-rect-2 {
+        width: 100px;
+        height: 180px;
+        right: -15px;
+        bottom: -10px;
+        opacity: 0.8;    }
 
-        .about-text h2 {
-            font-size: 2.8rem;
-            margin-bottom: 32px;
-            color: var(--deep-brown);
-            font-weight: 300;
-            line-height: 1.2;
-        }
-
-        .about-text p {
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-        }
-
-        .about-image {
-            background-color: var(--accent-cream);
-            height: 420px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-style: italic;
-            font-size: 15px;
-        }
+    .video-rect-3 {
+        display: none;
+    }
+}
 
 
+/* About Section Styles */
+.about {
+    background-color: var(--accent-cream);
+    position: relative;
+    overflow: hidden;
+}
 
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    animation: fadeIn 1s ease forwards;
+}
 
+.about-text h2 {
+    font-size: clamp(2.8rem, 5vw, 3.5rem);
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    animation: slideDown 1s ease forwards;
+}
 
+.about-text p {
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    line-height: 1.8;
+    animation: slideUp 1s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.image-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.about-photo {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.5s ease;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Mobile Animations for About Section */
+@media (max-width: 768px) {
+    .mobile-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .mobile-animate.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .about-text h2.mobile-animate {
+        transition-delay: 0.2s;
+    }
+    
+    .about-text p.mobile-animate:nth-of-type(1) {
+        transition-delay: 0.4s;
+    }
+    
+    .about-text p.mobile-animate:nth-of-type(2) {
+        transition-delay: 0.6s;
+    }
+    
+    .about-image.mobile-animate {
+        transition-delay: 0.8s;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-text h2 {
+        font-size: clamp(2.5rem, 6vw, 3rem);
+        text-align: center;
+    }
+
+    .about-text p {
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        text-align: center;
+    }
+
+    .about-photo {
+        height: 400px;
+    }
+}
+
+.image-accent {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--soft-brown), var(--muted-brown));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.about-photo:hover {
+    transform: scale(1.02);
+}
         /* Portfolio Section */
         .portfolio {
             background: linear-gradient(135deg, var(--primary-beige) 0%, var(--warm-white) 100%);
@@ -1123,7 +1373,7 @@
             }
             
             .services-container {
-                height: 320px;
+                height: 500px;
             }
             
             .service-overlay {
@@ -1245,31 +1495,44 @@
             font-size: 14px;
         }
 
-        /* Mobile Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(254, 254, 254, 0.98);
-                flex-direction: column;
-                padding: 24px 0;
-                border-bottom: 1px solid var(--border-light);
-            }
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(254, 254, 254, 0.98);
+        flex-direction: column;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--border-light);
+        align-items: center; /* Center items horizontally */
+        text-align: center; /* Center text */
+    }
 
-            .nav-links.active {
-                display: flex;
-            }
+    .nav-links.active {
+        display: flex;
+    }
 
-            .nav-links li {
-                margin: 12px 0;
-            }
+    .nav-links li {
+        margin: 12px 0;
+        width: 100%; /* Full width for better tap targets */
+        text-align: center; /* Ensure text is centered */
+    }
+    
+    .nav-links a {
+        display: inline-block; /* Better for centering */
+        padding: 8px 0; /* Add some vertical padding for better tap targets */
+        font-size: 16px; /* Slightly larger font for better readability */
+    }
 
-            .mobile-menu-toggle {
-                display: flex;
-            }
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    /* Rest of your mobile styles... */
+}
 
             .logo {
                 font-size: 20px;
@@ -1383,10 +1646,12 @@
     </style>
 </head>
 <body>
+
+
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">Caylah Rankins</div>
+            <a href="#home" class="logo">Caylah Rankins</a>
             <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
@@ -1402,54 +1667,58 @@
         </div>
     </nav>
 
-<!-- Hero Section -->
+    <!-- Hero Section -->
 <section id="home" class="hero">
     <!-- Video Rectangle Background Elements -->
     <div class="video-rect-1">
         <video autoplay muted loop playsinline>
-            <source src="https://cdn.coverr.co/videos/coverr-woman-applying-makeup-3634/1080p.mp4" type="video/mp4">
+            <source src="./images/1.mp4" type="video/mp4">
         </video>
     </div>
     <div class="video-rect-2">
         <video autoplay muted loop playsinline>
-            <source src="https://cdn.coverr.co/videos/coverr-woman-applying-lipstick-2683/1080p.mp4" type="video/mp4">
+            <source src="./images/2.mp4" type="video/mp4">
         </video>
     </div>
     <div class="video-rect-3">
         <video autoplay muted loop playsinline>
-            <source src="https://cdn.coverr.co/videos/coverr-woman-applying-skincare-product-5560/1080p.mp4" type="video/mp4">
+            <source src="./images/3.mp4" type="video/mp4">
         </video>
     </div>
     
     <div class="container">
         <div class="section-content">
-            <h1>Caylah Rankins</h1>
+            <h1 class="animated-title">Caylah Rankins</h1>
             <p class="subtitle">Content Creator & Brand Storyteller</p>
             <p class="bio">I'm passionate about beauty, skincare, and lifestyle storytelling. I love creating authentic, engaging content that connects with my audience and helps brands shine in a relatable way.</p>
-            <a href="#contact" class="cta-button">Let's Collaborate</a>
+            <a href="#contact" class="cta-button shine-button">Let's Collaborate</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 class="mobile-animate">About Me</h2>
+                <p class="mobile-animate">A little insight into my creative approach: I focus on organic, honest content that feels approachable yet elevated. My goal is to create authentic connections between brands and audiences through genuine storytelling.</p>
+                <p class="mobile-animate">Every piece of content I create comes from a place of authenticity, ensuring that my audience receives value while brands get the genuine representation they deserve.</p>
+            </div>
+            <div class="about-image mobile-animate">
+                <div class="image-wrapper">
+                    <img src="images/1.jpg" alt="About Jadis Luna" class="about-photo">
+                    <div class="image-accent"></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>A little insight into my creative approach: I focus on organic, honest content that feels approachable yet elevated. My goal is to create authentic connections between brands and audiences through genuine storytelling.</p>
-                    <p>Every piece of content I create comes from a place of authenticity, ensuring that my audience receives value while brands get the genuine representation they deserve.</p>
-                </div>
-                <div class="about-image">
-                    [Your Photo Here]
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Portfolio Section -->
+
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -1483,129 +1752,146 @@
                 </div>
             </div>
 
-            <!-- TikTok Video Grid -->
-            <div class="tiktok-grid">
-                <div class="tiktok-item">
-                    <div class="tiktok-video">
-                        <div class="video-placeholder">
-                            <div class="tiktok-icon-small">
-                                <i class="fab fa-tiktok"></i>
-                            </div>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4>Morning Rituals</h4>
-                        <p>Gentle skincare moments</p>
-                        <div class="category-dot skincare"></div>
-                    </div>
-                </div>
-
-                <div class="tiktok-item">
-                    <div class="tiktok-video">
-                        <div class="video-placeholder">
-                            <div class="tiktok-icon-small">
-                                <i class="fab fa-tiktok"></i>
-                            </div>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4>Product Discovery</h4>
-                        <p>First impressions & honest thoughts</p>
-                        <div class="category-dot review"></div>
-                    </div>
-                </div>
-
-                <div class="tiktok-item">
-                    <div class="tiktok-video">
-                        <div class="video-placeholder">
-                            <div class="tiktok-icon-small">
-                                <i class="fab fa-tiktok"></i>
-                            </div>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4>Get Ready With Me</h4>
-                        <p>Effortless everyday looks</p>
-                        <div class="category-dot lifestyle"></div>
-                    </div>
-                </div>
-
-                <div class="tiktok-item">
-                    <div class="tiktok-video">
-                        <div class="video-placeholder">
-                            <div class="tiktok-icon-small">
-                                <i class="fab fa-tiktok"></i>
-                            </div>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4>Brand Stories</h4>
-                        <p>Meaningful partnerships</p>
-                        <div class="category-dot collaboration"></div>
-                    </div>
-                </div>
-
-                <div class="tiktok-item">
-                    <div class="tiktok-video">
-                        <div class="video-placeholder">
-                            <div class="tiktok-icon-small">
-                                <i class="fab fa-tiktok"></i>
-                            </div>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4>Lifestyle Moments</h4>
-                        <p>Behind the scenes & real life</p>
-                        <div class="category-dot lifestyle"></div>
-                    </div>
-                </div>
-
-                <div class="tiktok-item">
-                    <div class="tiktok-video">
-                        <div class="video-placeholder">
-                            <div class="tiktok-icon-small">
-                                <i class="fab fa-tiktok"></i>
-                            </div>
-                        </div>
-                        <div class="video-overlay">
-                            <div class="play-button">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-info">
-                        <h4>Beauty Tips</h4>
-                        <p>Quick tutorials & techniques</p>
-                        <div class="category-dot tutorial"></div>
-                    </div>
+<!-- TikTok Video Grid -->
+<div class="tiktok-grid">
+    <div class="tiktok-item">
+        <div class="tiktok-video">
+            <div class="video-placeholder">
+                <video autoplay muted loop playsinline>
+                    <source src="./images/2.mp4" type="video/mp4">
+                </video>
+                <div class="tiktok-icon-small">
+                    <i class="fab fa-tiktok"></i>
                 </div>
             </div>
+            <div class="video-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h4>Morning Rituals</h4>
+            <p>Gentle skincare moments</p>
+            <div class="category-dot skincare"></div>
+        </div>
+    </div>
 
+    <div class="tiktok-item">
+        <div class="tiktok-video">
+            <div class="video-placeholder">
+                <video autoplay muted loop playsinline>
+                    <source src="./images/4.mp4" type="video/mp4">
+                </video>
+                <div class="tiktok-icon-small">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+            <div class="video-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h4>Product Discovery</h4>
+            <p>First impressions & honest thoughts</p>
+            <div class="category-dot review"></div>
+        </div>
+    </div>
+
+    <div class="tiktok-item">
+        <div class="tiktok-video">
+            <div class="video-placeholder">
+                <video autoplay muted loop playsinline>
+                    <source src="./images/5.mp4" type="video/mp4">
+                </video>
+                <div class="tiktok-icon-small">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+            <div class="video-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h4>Get Ready With Me</h4>
+            <p>Effortless everyday looks</p>
+            <div class="category-dot lifestyle"></div>
+        </div>
+    </div>
+
+    <div class="tiktok-item">
+        <div class="tiktok-video">
+            <div class="video-placeholder">
+                <video autoplay muted loop playsinline>
+                    <source src="./images/2.mp4" type="video/mp4">
+                </video>
+                <div class="tiktok-icon-small">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+            <div class="video-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h4>Brand Stories</h4>
+            <p>Meaningful partnerships</p>
+            <div class="category-dot collaboration"></div>
+        </div>
+    </div>
+
+    <div class="tiktok-item">
+        <div class="tiktok-video">
+            <div class="video-placeholder">
+                <video autoplay muted loop playsinline>
+                    <source src="./images/7.mp4" type="video/mp4">
+                </video>
+                <div class="tiktok-icon-small">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+            <div class="video-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h4>Lifestyle Moments</h4>
+            <p>Behind the scenes & real life</p>
+            <div class="category-dot lifestyle"></div>
+        </div>
+    </div>
+
+    <div class="tiktok-item">
+        <div class="tiktok-video">
+            <div class="video-placeholder">
+                <video autoplay muted loop playsinline>
+                    <source src="./images/8.mp4" type="video/mp4">
+                </video>
+                <div class="tiktok-icon-small">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+            </div>
+            <div class="video-overlay">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </div>
+        <div class="video-info">
+            <h4>Beauty Tips</h4>
+            <p>Quick tutorials & techniques</p>
+            <div class="category-dot tutorial"></div>
+        </div>
+    </div>
+</div>
             <div class="portfolio-footer">
                 <a href="#contact" class="explore-btn">
                     <span>Explore Full Portfolio</span>
@@ -1959,5 +2245,48 @@
     document.addEventListener('DOMContentLoaded', initServicesDragScroll);
     </script>
 
+    <script>
+
+                function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            navLinks.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            navLinks.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        }
+
+    </script>
+
+<script>
+    // Intersection Observer for mobile animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Only run on mobile devices
+        if (window.innerWidth <= 768) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+            
+            // Observe all elements with mobile-animate class
+            document.querySelectorAll('.mobile-animate').forEach(element => {
+                observer.observe(element);
+            });
+        }
+    });
+</script>
 </body>
 </html>
+
