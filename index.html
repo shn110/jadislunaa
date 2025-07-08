@@ -396,10 +396,10 @@
     }
     
     .video-rect-1 {
-        width: 140px;
-        height: 250px;
+        width: 120px;
+        height: 200px;
         left: -10px;
-        top: 15%;
+        top: 10%;
         opacity: .6;
         z-index: 1;
     }
@@ -451,151 +451,271 @@
     }
 }
 
-
-/* About Section Styles */
-.about {
-    background-color: var(--accent-cream);
+        /* About Section Styles */
+/* Enhanced About Section Styles with Advanced Animations */
+.jadis-profile-sanctuary {
+    padding: 80px 0;
+    background-color: var(--primary-beige);
     position: relative;
     overflow: hidden;
 }
 
-.about-content {
+/* Floating background elements */
+.jadis-profile-sanctuary::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--soft-brown), var(--muted-brown));
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: floatBackground 8s ease-in-out infinite;
+}
+
+.jadis-profile-sanctuary::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, var(--accent-cream), var(--soft-brown));
+    border-radius: 50%;
+    opacity: 0.08;
+    animation: floatBackground 6s ease-in-out infinite reverse;
+}
+
+@keyframes floatBackground {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.creative-vision-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: center;
-    animation: fadeIn 1s ease forwards;
+    position: relative;
+    z-index: 2;
 }
 
-.about-text h2 {
+/* Enhanced Portrait Zone with Advanced Animations */
+.portrait-revelation-zone {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+}
+
+.portrait-revelation-zone.animate-in {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+}
+
+.visual-narrative-frame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(88, 75, 65, 0.15);
+    transition: all 0.4s ease;
+    transform-origin: center;
+}
+
+.visual-narrative-frame:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 0 30px 80px rgba(88, 75, 65, 0.25);
+}
+
+.essence-capture-portrait {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.visual-narrative-frame:hover .essence-capture-portrait {
+    transform: scale(1.05);
+}
+
+/* Enhanced Floating Accent Orb */
+.floating-accent-orb {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--soft-brown), var(--muted-brown));
+    border-radius: 50%;
+    opacity: 0;
+    animation: orbFloat 4s ease-in-out infinite, orbFadeIn 0.8s ease forwards 0.6s;
+    box-shadow: 0 10px 30px rgba(212, 196, 176, 0.4);
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(180deg); }
+}
+
+@keyframes orbFadeIn {
+    to { opacity: 0.8; }
+}
+
+/* Enhanced Text Content with Staggered Animations */
+.storytelling-manuscript {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.storytelling-manuscript.animate-in {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.creative-manifesto-title {
     font-size: clamp(2.8rem, 5vw, 3.5rem);
     margin-bottom: 30px;
     color: var(--text-primary);
-    animation: slideDown 1s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
 }
 
-.about-text p {
+.creative-manifesto-title.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animated underline effect */
+.creative-manifesto-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--soft-brown), var(--muted-brown));
+    border-radius: 2px;
+    transition: width 1s ease 0.5s;
+}
+
+.creative-manifesto-title.animate-in::after {
+    width: 80px;
+}
+
+.authentic-voice-intro {
     margin-bottom: 20px;
     color: var(--text-secondary);
     font-size: clamp(1.1rem, 2.5vw, 1.3rem);
     line-height: 1.8;
-    animation: slideUp 1s ease forwards;
-    animation-delay: 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.image-wrapper {
+.authentic-voice-intro.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.brand-philosophy-statement {
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 0.5s;
 }
 
-.about-photo {
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-    border-radius: 20px;
-    transition: transform 0.5s ease;
+.brand-philosophy-statement.animate-in {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Animation Keyframes */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Subtle text highlight animation */
+.brand-philosophy-statement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, var(--soft-brown), var(--muted-brown));
+    border-radius: 2px;
+    transition: height 0.8s ease 1.2s;
 }
 
-/* Mobile Animations for About Section */
+.brand-philosophy-statement.animate-in::before {
+    height: 100%;
+}
+
+/* Responsive Enhancements */
 @media (max-width: 768px) {
-    .mobile-animate {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
+    .jadis-profile-sanctuary {
+        padding: 60px 0;
     }
     
-    .mobile-animate.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-    .about-text h2.mobile-animate {
-        transition-delay: 0.2s;
-    }
-    
-    .about-text p.mobile-animate:nth-of-type(1) {
-        transition-delay: 0.4s;
-    }
-    
-    .about-text p.mobile-animate:nth-of-type(2) {
-        transition-delay: 0.6s;
-    }
-    
-    .about-image.mobile-animate {
-        transition-delay: 0.8s;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .about-content {
+    .creative-vision-grid {
         grid-template-columns: 1fr;
         gap: 40px;
-    }
-
-    .about-text h2 {
-        font-size: clamp(2.5rem, 6vw, 3rem);
         text-align: center;
     }
-
-    .about-text p {
-        font-size: clamp(1rem, 2.5vw, 1.2rem);
-        text-align: center;
+    
+    .portrait-revelation-zone {
+        order: 2;
+        transform: translateY(30px) scale(0.95);
     }
-
-    .about-photo {
-        height: 400px;
+    
+    .portrait-revelation-zone.animate-in {
+        transform: translateY(0) scale(1);
+    }
+    
+    .storytelling-manuscript {
+        order: 1;
+        transform: translateY(-30px);
+    }
+    
+    .storytelling-manuscript.animate-in {
+        transform: translateY(0);
+    }
+    
+    .essence-capture-portrait {
+        height: 350px;
+    }
+    
+    .floating-accent-orb {
+        width: 50px;
+        height: 50px;
+        top: 15px;
+        right: 15px;
     }
 }
 
-.image-accent {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 200px;
-    height: 200px;
-    background: linear-gradient(135deg, var(--soft-brown), var(--muted-brown));
-    border-radius: 20px;
-    z-index: -1;
-    opacity: 0.3;
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 0.8s;
-}
-
-.about-photo:hover {
-    transform: scale(1.02);
-}
+@media (max-width: 480px) {
+    .creative-vision-grid {
+        gap: 30px;
+    }
+    
+    .essence-capture-portrait {
+        height: 300px;
+    }
+    
+    .creative-manifesto-title {
+        margin-bottom: 20px;
+    }
+    
+    .authentic-voice-intro,
+    .brand-philosophy-statement {
+        margin-bottom: 15px;
+    }
+}            
+        
         /* Portfolio Section */
         .portfolio {
             background: linear-gradient(135deg, var(--primary-beige) 0%, var(--warm-white) 100%);
@@ -1610,7 +1730,7 @@
             .container {
                 padding: 0 20px;
             }
-        }
+       
 
         @media (max-width: 480px) {
             .hero h1 {
@@ -1678,6 +1798,7 @@
             <source src="./images/1.mp4" type="video/mp4">
         </video>
     </div>
+
     <div class="video-rect-2">
         <video autoplay muted loop playsinline>
             <source src="./images/2.mp4" type="video/mp4">
@@ -1699,28 +1820,25 @@
     </div>
 </section>
 
+
 <!-- About Section -->
-<section id="about" class="about">
+<section id="about" class="jadis-profile-sanctuary">
     <div class="container">
-        <div class="about-content">
-            <div class="about-text">
-                <h2 class="mobile-animate">About Me</h2>
-                <p class="mobile-animate">A little insight into my creative approach: I focus on organic, honest content that feels approachable yet elevated. My goal is to create authentic connections between brands and audiences through genuine storytelling.</p>
-                <p class="mobile-animate">Every piece of content I create comes from a place of authenticity, ensuring that my audience receives value while brands get the genuine representation they deserve.</p>
-            </div>
-            <div class="about-image mobile-animate">
-                <div class="image-wrapper">
-                    <img src="images/1.jpg" alt="About Jadis Luna" class="about-photo">
-                    <div class="image-accent"></div>
+        <div class="creative-vision-grid">
+            <div class="portrait-revelation-zone">
+                <div class="visual-narrative-frame">
+                    <img src="images/1.jpg" alt="About Jadis Luna" class="essence-capture-portrait">
+                    <div class="floating-accent-orb"></div>
                 </div>
+            </div>
+            <div class="storytelling-manuscript">
+                <h2 class="creative-manifesto-title">About Me</h2>
+                <p class="authentic-voice-intro">A little insight into my creative approach: I focus on organic, honest content that feels approachable yet elevated. My goal is to create authentic connections between brands and audiences through genuine storytelling.</p>
+                <p class="brand-philosophy-statement">Every piece of content I create comes from a place of authenticity, ensuring that my audience receives value while brands get the genuine representation they deserve.</p>
             </div>
         </div>
     </div>
 </section>
-
-
-
-
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
@@ -2287,6 +2405,93 @@
         }
     });
 </script>
+
+<script>
+// Enhanced About Section Scroll Animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced Intersection Observer with staggered animations
+    const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                
+                // Add staggered animation delays
+                if (target.classList.contains('portrait-revelation-zone')) {
+                    setTimeout(() => {
+                        target.classList.add('animate-in');
+                    }, 100);
+                }
+                
+                if (target.classList.contains('storytelling-manuscript')) {
+                    setTimeout(() => {
+                        target.classList.add('animate-in');
+                        
+                        // Stagger text elements
+                        const title = target.querySelector('.creative-manifesto-title');
+                        const intro = target.querySelector('.authentic-voice-intro');
+                        const statement = target.querySelector('.brand-philosophy-statement');
+                        
+                        setTimeout(() => title?.classList.add('animate-in'), 200);
+                        setTimeout(() => intro?.classList.add('animate-in'), 400);
+                        setTimeout(() => statement?.classList.add('animate-in'), 600);
+                    }, 300);
+                }
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '-50px 0px -50px 0px'
+    });
+    
+    // Observe about section elements
+    const portraitZone = document.querySelector('.portrait-revelation-zone');
+    const manuscriptZone = document.querySelector('.storytelling-manuscript');
+    
+    if (portraitZone) aboutObserver.observe(portraitZone);
+    if (manuscriptZone) aboutObserver.observe(manuscriptZone);
+    
+    // Add parallax effect to floating orb
+    const floatingOrb = document.querySelector('.floating-accent-orb');
+    if (floatingOrb) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const aboutSection = document.querySelector('.jadis-profile-sanctuary');
+            
+            if (aboutSection) {
+                const sectionTop = aboutSection.offsetTop;
+                const sectionHeight = aboutSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                // Check if about section is in viewport
+                if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+                    const progress = (scrolled + windowHeight - sectionTop) / (sectionHeight + windowHeight);
+                    const translateY = (progress - 0.5) * 20; // Subtle parallax
+                    floatingOrb.style.transform = `translateY(${translateY}px) rotate(${progress * 360}deg)`;
+                }
+            }
+        });
+    }
+    
+    // Add hover effects for enhanced interactivity
+    const aboutSection = document.querySelector('.jadis-profile-sanctuary');
+    if (aboutSection) {
+        aboutSection.addEventListener('mousemove', (e) => {
+            const rect = aboutSection.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            // Subtle background movement
+            const moveX = (x - 0.5) * 10;
+            const moveY = (y - 0.5) * 10;
+            
+            aboutSection.style.setProperty('--mouse-x', `${moveX}px`);
+            aboutSection.style.setProperty('--mouse-y', `${moveY}px`);
+        });
+    }
+});
+</script>
+
+
 </body>
 </html>
 
